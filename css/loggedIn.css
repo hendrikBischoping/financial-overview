@@ -1,0 +1,19 @@
+#sideBar {
+    height: calc(100vh - 8rem);
+    padding: 4rem 4rem 0 0;
+    background-color: rgb(0, 0, 0, 0.1);
+}
+
+#sideBar p {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+#sideBar p:hover {
+    cursor: pointer;
+    background-color: rgb(0, 0, 0, 0.1);
+}
+
+#mainContent {
+    padding-top: 4rem;
+}

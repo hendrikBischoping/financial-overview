@@ -1,0 +1,61 @@
+@import url("./css/loggedOut.css");
+@import url("./css/loggedIn.css");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: sans-serif;
+  background-color: lightgreen;
+  color: black;
+}
+
+main {
+    padding-right: 8rem;
+}
+
+header {
+    padding: 0.5rem 8rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    align-items: center;
+    justify-content: space-between;
+    height: 8rem;
+    
+}
+
+h1{
+    margin: 2rem 0;
+}
+
+section {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 4rem;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.d-flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    height: 2rem;
+    width: 4rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: solid, 2px rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
