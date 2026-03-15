@@ -1,45 +1,54 @@
-// let loginStatus = false;
-let loginStatus = true;
+let loginStatus = false;
 
 function init() {
     login()
 }
 
+document.addEventListener("DOMContentLoaded", init);
+document.getElementById("loginButton").addEventListener("click", login);
+
+document.addEventListener("click", (e) => {
+    if (e.target.dataset.page) {
+        renderMainContent(e.target.dataset.page);
+    }
+});
+
 // Section for test login
 
-function login() {
-    let loginButton = document.getElementById('loginButton');
-    let main = document.getElementById('main');
-    loginButton.innerHTML = "";
-    main.innerHTML = ""
-    
+async function login() {
+    const loginButton = document.getElementById('loginButton');
+    const main = document.getElementById('main');
+
     if (loginStatus) {
-        loginButton.innerHTML = "Sign Out"
-        // main.innerHTML = renderLoginContent();
-        renderHtmlContent("html/loggedIn.html").then(html => {
-            document.getElementById('main').innerHTML = html;
-        })
+        loginButton.textContent = "Sign Out";
+
+        const html = await renderHtmlContent("html/loggedIn.html");
+        main.innerHTML = html;
+
+        renderMainContent("landingPage");
+
     } else {
-        loginButton.innerHTML = "Sign In"
-        // main.innerHTML += renderLogoutContent();
-        renderHtmlContent("html/loggedOut.html").then(html => {
-            document.getElementById('main').innerHTML = html;
-        })
+        loginButton.textContent = "Sign In";
+
+        const html = await renderHtmlContent("html/loggedOut.html");
+        main.innerHTML = html;
     }
 
     loginStatus = !loginStatus;
 }
 
-async function renderHtmlContent(htmlFilePath) {
-    const response = await fetch(htmlFilePath);
-    const html = await response.text();
-    return html;
+async function renderHtmlContent(path) {
+    const response = await fetch(path);
+
+    if (!response.ok) {
+        throw new Error("HTML konnte nicht geladen werden: " + path);
+    }
+
+    return await response.text();
 }
 
 async function renderMainContent(content) {
-    let htmlPath = './html/'+content+`.html`;
-    console.log(htmlPath);
-    renderHtmlContent(htmlPath).then(html => {
-            document.getElementById('mainContent').innerHTML = html;
-})
+    let htmlPath = './html/' + content + '.html';
+    const html = await renderHtmlContent(htmlPath);
+    document.getElementById('mainContent').innerHTML = html;
 }
